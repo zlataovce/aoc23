@@ -5,9 +5,8 @@ fun main() = println(
                 .split(';')
                 .flatMap { d ->
                     d.split(',').map { g ->
-                        g.filterNot(Char::isWhitespace)
-                            .partition { !it.isDigit() }
-                            .run { first to second.toInt() }
+                        g.trim().split(' ')
+                            .let { (a, b) -> b to a.toInt() }
                     }
                 }
                 .groupBy { it.first }
